@@ -77,14 +77,7 @@ parse_cookie(char *cookiestr, PARSED_COOKIE* ck)
   ck->name  = (lval != NULL) ? xstrdup(lval) : NULL;
   ck->value = (rval != NULL) ? xstrdup(rval) : NULL; 
   /* get the biggest possible positive value */
-  ck->expires = 0;
-  ck->expires = ~ck->expires;
-  if(ck->expires < 0){
-    ck->expires = ~(1 << ((sizeof(ck->expires) * 8) - 1));
-  }
-  if(ck->expires < 0){
-    ck->expires = (ck->expires >> 1) * -1;
-  }
+  ck->expires = INT_MAX;
   
   if(!*cookiestr){ 
     /** 
