@@ -80,7 +80,7 @@ parse_cookie(char *cookiestr, PARSED_COOKIE* ck)
   ck->expires = 0;
   ck->expires = ~ck->expires;
   if(ck->expires < 0){
-    ck->expires = ~(1 << ((sizeof(ck->expires) * 8) - 1));
+    ck->expires = ~(1UL << ((sizeof(ck->expires) * 8) - 1));
   }
   if(ck->expires < 0){
     ck->expires = (ck->expires >> 1) * -1;
